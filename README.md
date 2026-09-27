@@ -2,8 +2,9 @@
 
 Unpacker is a C++ library for decoding raw data recorded with HDDAQ, which is used at J-PARC K1.8 beamline.
 
-It reads HDDAQ raw data and converts it into
-detector / plane / segment / channel data that analysis programs can use.
+It reads HDDAQ raw data and converts it into <br>
+detector / plane / segment / channel / data <br>
+that analysis programs can use.
 
 ## Requirements
 Unpacker is written in C++ and built with GNU make.
@@ -11,13 +12,14 @@ Several additional packages are also necessary for compiling.
 
 | Software   | Version    | Note                                |
 |------------|------------|-------------------------------------|
+| git        |            | Cloning the repository, `unpacker-config --version` |
 | GCC        | 8 or later | C++17 support is required           |
 | GNU make   |            |                                     |
 | zlib       |            | Reading `.gz` files                 |
 | bzip2      |            | Reading `.bz2` files                |
 | Xerces-C++ |            | Reading the XML configuration files |
 
-The following libraries require **development packages** (names ending in `-devel` on RHEL, or `-dev` on Debian/Ubuntu).
+The following libraries require **development packages** (names ending in `-devel` on RHEL).
 - zlib
 - bzip2
 - Xerces-C++
@@ -26,13 +28,18 @@ The following libraries require **development packages** (names ending in `-deve
 `xerces-c-devel` is provided by EPEL.
 ```sh
 sudo dnf install epel-release
-sudo dnf install gcc-c++ make zlib-devel bzip2-devel xerces-c-devel
+sudo dnf install git gcc-c++ make zlib-devel bzip2-devel xerces-c-devel
 ```
 
-### Debian / Ubuntu
-```sh
-sudo apt install g++ make zlib1g-dev libbz2-dev libxerces-c-dev
-```
+## Tested environments (as of September 2026)
+| OS          | Architecture | Note                                |
+|-------------|--------------|-------------------------------------|
+| RHEL 9      | x86_64       | KEKCC (after the migration in 2024) |
+| AlmaLinux 9 | x86_64       |                                     |
+| AlmaLinux 9 | aarch64      | Apple Silicon (Parallels Desktop)   |
+
+> [!NOTE]
+> It has also been tested on the previous KEKCC system.
 
 ## Installation
 
@@ -59,7 +66,7 @@ source ~/.bashrc
 > [!WARNING]
 > If you have more than one unpacker (for example, for different experiment),
 > only the first `unpacker-config` found in `PATH` is used.
-> Keep only one of them in `PATH` (check your `~/.bashrc`).
+> Keep only one of them in `PATH` (check your `~/.bashrc`). <br>
 > Run `unpacker-config --prefix` to ensure the correct one is used.
 
 Check the setup:
@@ -80,5 +87,5 @@ make distclean   # also remove the contents of include/, lib/ and bin/
 > [!NOTE]
 > If you move or rename the unpacker directory, run `make distclean` and build again.
 > The old path is embedded in the libraries, and programs may fail to find them
-> depending on your environment.
+> depending on your environment. <br>
 > Programs that use the unpacker should also be rebuilt.
