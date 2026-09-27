@@ -1,10 +1,10 @@
 # unpacker
 
-Unpacker is a C++ library for decoding raw data recorded with HDDAQ, which is used at J-PARC K1.8 beamline.
+Unpacker is a C++ library for decoding raw data recorded with HDDAQ, the DAQ system used at J-PARC K1.8 beamline.
 
-It reads HDDAQ raw data and converts it into <br>
-detector / plane / segment / channel / data <br>
-that analysis programs can use.
+It reads HDDAQ raw data and converts it into a format that analysis programs can use,
+structured as follows: <br>
+detector (device) / plane / segment / channel (ch) / data (type)
 
 ## Requirements
 Unpacker is written in C++ and built with GNU make.
