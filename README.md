@@ -64,8 +64,8 @@ source ~/.bashrc
 ```
 
 > [!WARNING]
-> If you have more than one unpacker (for example, for different experiment),
-> only the first `unpacker-config` found in `PATH` is used.
+> If you have more than one unpacker (for example, for different experiments),
+> only the first `unpacker-config` found in `PATH` will be used.
 > Keep only one of them in `PATH` (check your `~/.bashrc`). <br>
 > Run `unpacker-config --prefix` to ensure the correct one is used.
 
