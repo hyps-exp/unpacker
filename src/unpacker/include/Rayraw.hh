@@ -77,7 +77,11 @@ public:
   // Event Header -------------------------------------------------
   // Header 1
   static const uint32_t k_header_size     = sizeof(Header)/sizeof(uint32_t);
-  static const uint32_t k_HEADER_MAGIC    = 0xffff0160U;
+
+  // RAYRAW v1
+  // static const uint32_t k_HEADER_MAGIC    = 0xffff0160U;
+  // RAYRAW v2(YAENAMIv3)
+  static const uint32_t k_HEADER_MAGIC    = 0xffff0162U;
 
   // Header 2
   static const uint32_t k_OVERFLOW_MASK   = 0x1U;
