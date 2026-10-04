@@ -148,6 +148,6 @@ Rayraw::update_tag( void )
   // m_has_tag.set(k_spill);
 }
 
-} // unpacker
+}
 
-} // hddaq
+}

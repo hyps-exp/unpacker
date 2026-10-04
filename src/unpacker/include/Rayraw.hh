@@ -1,43 +1,44 @@
 // -*- C++ -*-
 
 // Author: Rintaro Kurata
-/***************************** Data structure of RAYRAW *****************************
 
- Header (3 words) + Data (Flash ADC & TDC)
-
-    Header1 : [31: 0] Magic word (0xffff0160)
-
-    Header2 : [31:20] 0xff0
-              [19:19] 0
-              [18:18] Event Overflow
-              [17: 0] Number of Word w/o Header
-
-    Header3 : [31:24] 0xff
-              [23:23] 0 (enRM)
-              [22:20] 0
-              [19:16] 0 (trmTag)
-              [15: 0] Self-counter (Event number)
-
-        TDC : [31:24] Magic word (Leading: 0xcc, Trailing: 0xcd)
-              [23:23] 0
-              [22:16] Channel
-              [15:15] 0
-              [14: 0] TDC data (LSB : 1/(4*300MHz) = 0.8333 ns)
-
-  Flash ADC : [31:28] Magic word (0xa)
-              [27:23] Channel
-              [22:21] 0
-              [20:10] Coarse-counter (LSB : 1/75MHz = 13.3333 ns)
-              [ 9: 0] ADC data
-
-
-  Header    : 3 words
-  TDC       : Variable (16 hits/ch/event at maximum)
-  Flash ADC : Variable (depends on window size)
-  Total     : Variable (3 words at least)
-
-  *********************** End of data structure of RAYRAW ***********************/
-
+/**
+ * Data structure of RAYRAW-v2
+ * Note: The magic word of RAYRAW-v2 is 0xffff0162, which
+ *       differs from that of RAYRAW-v1 (0xffff0160).
+ *
+ * Header (3 words) + Data (Flash ADC & TDC)
+ *
+ *   Header1 : [31: 0] Magic word (0xffff0162)
+ *
+ *   Header2 : [31:20] 0xff0
+ *             [19:19] 0
+ *             [18:18] Event Overflow
+ *             [17: 0] Number of Word w/o Header
+ *
+ *   Header3 : [31:24] 0xff
+ *             [23:23] 0 (enRM)
+ *             [22:20] 0
+ *             [19:16] 0 (trmTag)
+ *             [15: 0] Self-counter (Event number)
+ *
+ *       TDC : [31:24] Magic word (Leading: 0xcc, Trailing: 0xcd)
+ *             [23:23] 0
+ *             [22:16] Channel
+ *             [15:15] 0
+ *             [14: 0] TDC data (LSB : 1/(4*300MHz) = 0.8333 ns)
+ *
+ * Flash ADC : [31:28] Magic word (0xa)
+ *             [27:23] Channel
+ *             [22:21] 0
+ *             [20:10] Coarse-counter (LSB : 1/75MHz = 13.3333 ns)
+ *             [ 9: 0] ADC data
+ *
+ * Header    : 3 words
+ * TDC       : Variable (16 hits/ch/event at maximum)
+ * Flash ADC : Variable (depends on window size)
+ * Total     : Variable (3 words at least)
+ */
 
 #ifndef HDDAQ__RAYRAW_UNPACKER_HH
 #define HDDAQ__RAYRAW_UNPACKER_HH
@@ -77,10 +78,6 @@ public:
   // Event Header -------------------------------------------------
   // Header 1
   static const uint32_t k_header_size     = sizeof(Header)/sizeof(uint32_t);
-
-  // RAYRAW v1
-  // static const uint32_t k_HEADER_MAGIC    = 0xffff0160U;
-  // RAYRAW v2(YAENAMIv3)
   static const uint32_t k_HEADER_MAGIC    = 0xffff0162U;
 
   // Header 2
